@@ -19,12 +19,12 @@ namespace ConciliateBankStatement.Core.UnitTests
             var transactionRepositoryMock = new Mock<ITransactionRepository>();
             transactionRepositoryMock.Setup(x => x.GetTransactionsByPeriod(It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(() => null);
 
-            var importerFileServiceMock = new Mock<IImporterFileService>();
-            var importedFileModel = new FileImportedModel()
+            var importerFileServiceMock = new Mock<IFileImporterService>();
+            var importedFileModel = new ImportedFileModel()
             {
-                Transactions = new List<TransactionFileImportedModel>()
+                Transactions = new List<TransactionImportedFileModel>()
                 {
-                    new TransactionFileImportedModel()
+                    new TransactionImportedFileModel()
                     {
                         Amount = 100,
                         DatePosted = DateTime.Now.AddDays(-3).Date,
@@ -37,7 +37,7 @@ namespace ConciliateBankStatement.Core.UnitTests
 
             importerFileServiceMock.Setup(x => x.Import(It.IsAny<string>())).Returns(importedFileModel);
 
-            var service = new ImporterTransactionService(transactionRepositoryMock.Object, importerFileServiceMock.Object);
+            var service = new TransactionImporterService(transactionRepositoryMock.Object, importerFileServiceMock.Object);
 
             var sut = service.Import(filePath);
 
@@ -53,12 +53,12 @@ namespace ConciliateBankStatement.Core.UnitTests
             var transactionRepositoryMock = new Mock<ITransactionRepository>();
             transactionRepositoryMock.Setup(x => x.GetTransactionsByPeriod(It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(new List<Transaction> { new Transaction("CREDIT", DateTime.Now.AddDays(-2).Date, 100, "teste") });
 
-            var importerFileServiceMock = new Mock<IImporterFileService>();
-            var importedFileModel = new FileImportedModel()
+            var importerFileServiceMock = new Mock<IFileImporterService>();
+            var importedFileModel = new ImportedFileModel()
             {
-                Transactions = new List<TransactionFileImportedModel>()
+                Transactions = new List<TransactionImportedFileModel>()
                 {
-                    new TransactionFileImportedModel()
+                    new TransactionImportedFileModel()
                     {
                         Amount = 100,
                         DatePosted = DateTime.Now.AddDays(-3).Date,
@@ -70,7 +70,7 @@ namespace ConciliateBankStatement.Core.UnitTests
 
             importerFileServiceMock.Setup(x => x.Import(It.IsAny<string>())).Returns(importedFileModel);
 
-            var service = new ImporterTransactionService(transactionRepositoryMock.Object, importerFileServiceMock.Object);
+            var service = new TransactionImporterService(transactionRepositoryMock.Object, importerFileServiceMock.Object);
 
             var sut = service.Import(filePath);
 
@@ -86,12 +86,12 @@ namespace ConciliateBankStatement.Core.UnitTests
             var transactionRepositoryMock = new Mock<ITransactionRepository>();
             transactionRepositoryMock.Setup(x => x.GetTransactionsByPeriod(It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(new List<Transaction> { new Transaction("CREDIT", DateTime.Now.AddDays(-3).Date, 100, "teste") });
 
-            var importerFileServiceMock = new Mock<IImporterFileService>();
-            var importedFileModel = new FileImportedModel()
+            var importerFileServiceMock = new Mock<IFileImporterService>();
+            var importedFileModel = new ImportedFileModel()
             {
-                Transactions = new List<TransactionFileImportedModel>()
+                Transactions = new List<TransactionImportedFileModel>()
                 {
-                    new TransactionFileImportedModel()
+                    new TransactionImportedFileModel()
                     {
                         Amount = 100,
                         DatePosted = DateTime.Now.AddDays(-3).Date,
@@ -103,7 +103,7 @@ namespace ConciliateBankStatement.Core.UnitTests
 
             importerFileServiceMock.Setup(x => x.Import(It.IsAny<string>())).Returns(importedFileModel);
 
-            var service = new ImporterTransactionService(transactionRepositoryMock.Object, importerFileServiceMock.Object);
+            var service = new TransactionImporterService(transactionRepositoryMock.Object, importerFileServiceMock.Object);
 
             var sut = service.Import(filePath);
 
@@ -119,12 +119,12 @@ namespace ConciliateBankStatement.Core.UnitTests
             var transactionRepositoryMock = new Mock<ITransactionRepository>();
             transactionRepositoryMock.Setup(x => x.GetTransactionsByPeriod(It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(() => throw new Exception());
 
-            var importerFileServiceMock = new Mock<IImporterFileService>();
-            var importedFileModel = new FileImportedModel()
+            var importerFileServiceMock = new Mock<IFileImporterService>();
+            var importedFileModel = new ImportedFileModel()
             {
-                Transactions = new List<TransactionFileImportedModel>()
+                Transactions = new List<TransactionImportedFileModel>()
                 {
-                    new TransactionFileImportedModel()
+                    new TransactionImportedFileModel()
                     {
                         Amount = 100,
                         DatePosted = DateTime.Now.AddDays(-3).Date,
@@ -136,7 +136,7 @@ namespace ConciliateBankStatement.Core.UnitTests
 
             importerFileServiceMock.Setup(x => x.Import(It.IsAny<string>())).Returns(importedFileModel);
 
-            var service = new ImporterTransactionService(transactionRepositoryMock.Object, importerFileServiceMock.Object);
+            var service = new TransactionImporterService(transactionRepositoryMock.Object, importerFileServiceMock.Object);
 
             var sut = service.Import(filePath);
 

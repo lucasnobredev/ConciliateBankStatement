@@ -7,14 +7,14 @@ using System.Text;
 
 namespace ConciliateBankStatement.Core
 {
-    public class ImporterTransactionService
+    public class TransactionImporterService
     {
         private readonly ITransactionRepository _transactionRepository;
-        private readonly IImporterFileService _importerFileService;
+        private readonly IFileImporterService _importerFileService;
 
-        public ImporterTransactionService(
+        public TransactionImporterService(
             ITransactionRepository transactionRepository,
-            IImporterFileService importerFileService)
+            IFileImporterService importerFileService)
         {
             _transactionRepository = transactionRepository;
             _importerFileService = importerFileService;

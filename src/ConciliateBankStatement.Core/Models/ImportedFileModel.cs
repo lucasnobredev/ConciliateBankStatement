@@ -4,15 +4,15 @@ using System.Text;
 
 namespace ConciliateBankStatement.Core.Models
 {
-    public class FileImportedModel
+    public class ImportedFileModel
     {
         public DateTime DateStart { get; set; }
         public DateTime DateEnd { get; set; }
-        public IList<TransactionFileImportedModel> Transactions { get; set; }
+        public IList<TransactionImportedFileModel> Transactions { get; set; }
 
-        public FileImportedModel()
+        public ImportedFileModel()
         {
-            this.Transactions = new List<TransactionFileImportedModel>();
+            this.Transactions = new List<TransactionImportedFileModel>();
         }
     }
 }

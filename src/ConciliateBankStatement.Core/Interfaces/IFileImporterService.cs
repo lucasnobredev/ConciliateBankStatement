@@ -5,8 +5,8 @@ using System.Text;
 
 namespace ConciliateBankStatement.Core.Interfaces
 {
-    public interface IImporterFileService
+    public interface IFileImporterService
     {
-        FileImportedModel Import(string filePath);
+        ImportedFileModel Import(string filePath);
     }
 }

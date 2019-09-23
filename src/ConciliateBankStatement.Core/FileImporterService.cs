@@ -8,9 +8,9 @@ using System.Text;
 
 namespace ConciliateBankStatement.Core
 {
-    public class ImporterFileService : IImporterFileService
+    public class FileImporterService : IFileImporterService
     {
-        public FileImportedModel Import(string filePath)
+        public ImportedFileModel Import(string filePath)
         {
             try
             {
@@ -31,9 +31,9 @@ namespace ConciliateBankStatement.Core
             }
         }
 
-        private FileImportedModel MapTransactionByFile(string line)
+        private ImportedFileModel MapTransactionByFile(string line)
         {
-            var fileImportedModel = new FileImportedModel
+            var fileImportedModel = new ImportedFileModel
             {
                 DateStart = GetDateFromTag(line.Split("<DTSTART>")[1].Split("<DTEND>")[0]),
                 DateEnd = GetDateFromTag(line.Split("<DTEND>")[1].Split("<STMTTRN>")[0])
@@ -44,7 +44,7 @@ namespace ConciliateBankStatement.Core
                 var transactionFile = line.Split("<STMTTRN>")[i];
                 var separacoes = transactionFile.Split('<', '>');
 
-                var transactionFileImportedModel = new TransactionFileImportedModel();
+                var transactionFileImportedModel = new TransactionImportedFileModel();
 
                 for (var j = 0; j < separacoes.Length; j++)
                 {

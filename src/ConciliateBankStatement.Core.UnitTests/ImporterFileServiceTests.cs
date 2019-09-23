@@ -13,7 +13,7 @@ namespace ConciliateBankStatement.Core.UnitTests
         [Fact(DisplayName = "Should Import A File With 31 Transactions")]
         public void ShouldImportAFileWith31Transactions()
         {
-            var importerFileService = new ImporterFileService();
+            var importerFileService = new FileImporterService();
 
             var filePath = Path.Combine("C:\\Projetos\\nibo_projeto\\ConciliateBankStatement\\src\\ConciliateBankStatement.Core.UnitTests", "teste.ofx");
             var qteTransactionsInFile = 31;

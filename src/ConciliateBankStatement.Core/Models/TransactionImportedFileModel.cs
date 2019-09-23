@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ConciliateBankStatement.Core.Models
 {
-    public class TransactionFileImportedModel
+    public class TransactionImportedFileModel
     {
         public string Type { get; set; }
         public DateTime DatePosted { get; set; }
