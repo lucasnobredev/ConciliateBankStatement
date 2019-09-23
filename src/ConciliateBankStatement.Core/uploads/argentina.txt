@@ -1,0 +1,21 @@
+01 - buenos aires
+02 - salta
+03 - salta/san antonio de las cores
+04 - purmamarca
+05 - tilcara
+06 - salta
+07 - cafayete  
+08 - atacama
+09 - atacama
+10 - atacama
+11 - salta  01 - buenos aires
+02 - salta
+03 - salta/san antonio de las cores
+04 - purmamarca
+05 - tilcara
+06 - salta
+07 - cafayete  
+08 - atacama
+09 - atacama
+10 - atacama
+11 - salta  

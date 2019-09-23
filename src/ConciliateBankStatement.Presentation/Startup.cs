@@ -41,7 +41,7 @@ namespace ConciliateBankStatement.Presentation
             services.AddScoped<ITransactionRepository, TransactionRepository>();
             services.AddSingleton<IFileImporterService, FileImporterService>();
             services.AddSingleton<IFileRecorderService, FileRecorderService>();
-            services.AddScoped<ITransactionImporterService, TransactionImporterService>();
+            services.AddScoped<ITransactionService, TransactionService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

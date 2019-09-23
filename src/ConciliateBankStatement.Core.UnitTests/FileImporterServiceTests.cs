@@ -15,15 +15,20 @@ namespace ConciliateBankStatement.Core.UnitTests
         public void ShouldImportAFileWith31Transactions()
         {
             var fileRecorderServiceMock = new Mock<IFileRecorderService>();
-            var importerFileService = new FileImporterService(fileRecorderServiceMock.Object);
-            var filePath = Path.Combine("C:\\Projetos\\nibo_projeto\\ConciliateBankStatement\\src\\ConciliateBankStatement.Core.UnitTests", "teste.ofx");
+            var sut = new FileImporterService(fileRecorderServiceMock.Object);
+            var filePath = GetFilePath();
             fileRecorderServiceMock.Setup(x => x.Recorder(It.IsAny<IFormFile>())).Returns(filePath);
 
             var qteTransactionsInFile = 31;
-            var sut = importerFileService.Import(It.IsAny<IFormFile>());
+            var result = sut.Import(It.IsAny<IFormFile>());
 
-            Assert.True(sut != null);
-            Assert.True(sut.Transactions.Count == qteTransactionsInFile);
+            Assert.True(result != null);
+            Assert.True(result.Transactions.Count == qteTransactionsInFile);
+        }
+        
+        private string GetFilePath()
+        {
+            return Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\..\\ConciliateBankStatement.Core.UnitTests", "teste.ofx");
         }
     }
 }

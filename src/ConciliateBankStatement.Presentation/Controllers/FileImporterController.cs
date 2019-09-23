@@ -13,10 +13,10 @@ namespace ConciliateBankStatement.Presentation.Controllers
 {
     public class FileImporterController : Controller
     {
-        private readonly ITransactionImporterService _transactionImporterService;
-        public FileImporterController(ITransactionImporterService transactionImporterService)
+        private readonly ITransactionService _transactionService;
+        public FileImporterController(ITransactionService transactionService)
         {
-            _transactionImporterService = transactionImporterService;
+            _transactionService = transactionService;
         }
 
         public IActionResult Index()
@@ -27,7 +27,7 @@ namespace ConciliateBankStatement.Presentation.Controllers
         [HttpPost]
         public IActionResult Index(IFormFile formFile)
         {
-            var response = _transactionImporterService.Import(formFile);
+            var response = _transactionService.Import(formFile);
 
             return View(response);
         }

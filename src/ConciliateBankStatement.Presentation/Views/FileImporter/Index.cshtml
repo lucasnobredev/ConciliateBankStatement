@@ -1,22 +1,40 @@
-﻿@{
+﻿@model ConciliateBankStatement.Core.Models.ImportResponse
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@if(Model != null)
+{
+    if (Model.Success)
+    {
+        <div class="alert alert-success">
+            <p>There were @Model.TransactionsImportedQuantity transactions imported.</p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning">
+            <p>@Model.Error</p>
+            <p>There were @Model.TransactionsImportedQuantity transactions imported.</p>
+        </div>
+    }
+}
 
-<form method="post" enctype="multipart/form-data" action="/">
-    <div class="form-group">
-        <div class="col-md-10">
-            <p>Upload one or more files using this form:</p>
-            <input type="file" name="formFile" multiple />
+<h3>File Importer</h3>
+
+<div class="row">
+    <form method="post" enctype="multipart/form-data" action="/">
+        <div class="form-group">
+            <div class="col-md-10">
+                <p>Upload one or more files using this form:</p>
+                <input type="file" name="formFile" multiple />
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-10">
-            <input type="submit" value="Upload" />
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Upload" />
+            </div>
         </div>
-    </div>
-</form>
+    </form>
+</div>

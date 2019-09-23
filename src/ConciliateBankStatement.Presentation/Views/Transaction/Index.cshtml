@@ -1,0 +1,48 @@
+﻿@model IList<ConciliateBankStatement.Core.Transaction>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3>Transactions</h3>
+
+<div class="card">
+    <div class="card-body">
+        <h4>Search</h4>
+        <form action="/transaction" method="GET" class="form-inline">
+            <div class="form-group">
+                <label>StartAt: </label>
+                <input type="date" name="startAt" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>EndAt: </label>
+                <input type="date" name="endAt" class="form-control" />
+            </div>
+            <input type="submit" />
+        </form>
+    </div>
+</div>
+
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>Id</th>
+            <th>Type</th>
+            <th>Date Posted</th>
+            <th>Amount</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var transaction in Model)
+        {
+            <tr>
+                <td>@transaction.Id</td>
+                <td>@transaction.Type</td>
+                <td>@transaction.DatePosted.ToShortDateString()</td>
+                <td>@transaction.Amount</td>
+                <td>@transaction.Description</td>
+            </tr>
+        }
+    </tbody>
+</table>

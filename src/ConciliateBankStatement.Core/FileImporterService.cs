@@ -52,28 +52,28 @@ namespace ConciliateBankStatement.Core
             for (var i = 1; i < line.Split("<STMTTRN>").Length; i++)
             {
                 var transactionFile = line.Split("<STMTTRN>")[i];
-                var separacoes = transactionFile.Split('<', '>');
+                var properties = transactionFile.Split('<', '>');
 
                 var transactionFileImportedModel = new TransactionImportedFileModel();
 
-                for (var j = 0; j < separacoes.Length; j++)
+                for (var j = 0; j < properties.Length; j++)
                 {
-                    if (string.IsNullOrEmpty(separacoes[j]) || separacoes[j][0] == '/')
+                    if (string.IsNullOrEmpty(properties[j]) || properties[j][0] == '/')
                         continue;
 
-                    switch (separacoes[j])
+                    switch (properties[j])
                     {
                         case "TRNTYPE":
-                            transactionFileImportedModel.Type = separacoes[j + 1];
+                            transactionFileImportedModel.Type = properties[j + 1];
                             break;
                         case "MEMO":
-                            transactionFileImportedModel.Description = separacoes[j + 1];
+                            transactionFileImportedModel.Description = properties[j + 1];
                             break;
                         case "DTPOSTED":
-                            transactionFileImportedModel.DatePosted = GetDateFromTag(separacoes[j + 1].Substring(0, 8));
+                            transactionFileImportedModel.DatePosted = GetDateFromTag(properties[j + 1].Substring(0, 8));
                             break;
                         case "TRNAMT":
-                            transactionFileImportedModel.Amount = decimal.Parse(separacoes[j + 1]);
+                            transactionFileImportedModel.Amount = decimal.Parse(properties[j + 1]);
                             break;
                     }
 

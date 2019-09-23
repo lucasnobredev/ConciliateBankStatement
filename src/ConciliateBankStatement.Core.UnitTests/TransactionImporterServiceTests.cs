@@ -16,7 +16,6 @@ namespace ConciliateBankStatement.Core.UnitTests
         [Fact(DisplayName = "Should Import Transaction When There Is Not No One Persisted")]
         public void ShouldImportTransactionWhenThereIsNotNoOnePersisted()
         {
-            var filePath = Path.Combine("C:\\Projetos\\nibo_projeto\\ConciliateBankStatement\\src\\ConciliateBankStatement.Core.UnitTests", "teste.ofx");
             var transactionRepositoryMock = new Mock<ITransactionRepository>();
             transactionRepositoryMock.Setup(x => x.GetTransactionsByPeriod(It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(() => null);
 
@@ -34,10 +33,10 @@ namespace ConciliateBankStatement.Core.UnitTests
                     }
                 }
             };
-            
+
             importerFileServiceMock.Setup(x => x.Import(It.IsAny<IFormFile>())).Returns(importedFileModel);
 
-            var service = new TransactionImporterService(transactionRepositoryMock.Object, importerFileServiceMock.Object);
+            var service = new TransactionService(transactionRepositoryMock.Object, importerFileServiceMock.Object);
 
             var sut = service.Import(It.IsAny<IFormFile>());
 
@@ -49,7 +48,6 @@ namespace ConciliateBankStatement.Core.UnitTests
         [Fact(DisplayName = "Should Import Transaction When There Is Transaction Persisted But It is not the same")]
         public void ShouldImportTransactionWhenThereIsTransactionPersistedButItIsNotTheSame()
         {
-            var filePath = Path.Combine("C:\\Projetos\\nibo_projeto\\ConciliateBankStatement\\src\\ConciliateBankStatement.Core.UnitTests", "teste.ofx");
             var transactionRepositoryMock = new Mock<ITransactionRepository>();
             transactionRepositoryMock.Setup(x => x.GetTransactionsByPeriod(It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(new List<Transaction> { new Transaction("CREDIT", DateTime.Now.AddDays(-2).Date, 100, "teste") });
 
@@ -70,19 +68,18 @@ namespace ConciliateBankStatement.Core.UnitTests
 
             importerFileServiceMock.Setup(x => x.Import(It.IsAny<IFormFile>())).Returns(importedFileModel);
 
-            var service = new TransactionImporterService(transactionRepositoryMock.Object, importerFileServiceMock.Object);
+            var sut = new TransactionService(transactionRepositoryMock.Object, importerFileServiceMock.Object);
 
-            var sut = service.Import(It.IsAny<IFormFile>());
+            var result = sut.Import(It.IsAny<IFormFile>());
 
-            Assert.True(sut.Success);
-            Assert.True(sut.Error == null);
-            Assert.True(sut.TransactionsImportedQuantity == 1);
+            Assert.True(result.Success);
+            Assert.True(result.Error == null);
+            Assert.True(result.TransactionsImportedQuantity == 1);
         }
 
         [Fact(DisplayName = "Should NOT Import Transaction When There Is Transaction Persisted And It is the same")]
         public void ShouldNotImportTransactionWhenThereIsTransactionPersistedAndItIsTheSame()
         {
-            var filePath = Path.Combine("C:\\Projetos\\nibo_projeto\\ConciliateBankStatement\\src\\ConciliateBankStatement.Core.UnitTests", "teste.ofx");
             var transactionRepositoryMock = new Mock<ITransactionRepository>();
             transactionRepositoryMock.Setup(x => x.GetTransactionsByPeriod(It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(new List<Transaction> { new Transaction("CREDIT", DateTime.Now.AddDays(-3).Date, 100, "teste") });
 
@@ -103,13 +100,13 @@ namespace ConciliateBankStatement.Core.UnitTests
 
             importerFileServiceMock.Setup(x => x.Import(It.IsAny<IFormFile>())).Returns(importedFileModel);
 
-            var service = new TransactionImporterService(transactionRepositoryMock.Object, importerFileServiceMock.Object);
+            var sut = new TransactionService(transactionRepositoryMock.Object, importerFileServiceMock.Object);
 
-            var sut = service.Import(It.IsAny<IFormFile>());
+            var result = sut.Import(It.IsAny<IFormFile>());
 
-            Assert.True(sut.Success);
-            Assert.True(sut.Error == null);
-            Assert.True(sut.TransactionsImportedQuantity == 0);
+            Assert.True(result.Success);
+            Assert.True(result.Error == null);
+            Assert.True(result.TransactionsImportedQuantity == 0);
         }
 
         [Fact(DisplayName = "Should Not Import Transaction When There Is An Unexpected Error In Flow")]
@@ -136,13 +133,13 @@ namespace ConciliateBankStatement.Core.UnitTests
 
             importerFileServiceMock.Setup(x => x.Import(It.IsAny<IFormFile>())).Returns(importedFileModel);
 
-            var service = new TransactionImporterService(transactionRepositoryMock.Object, importerFileServiceMock.Object);
+            var sut = new TransactionService(transactionRepositoryMock.Object, importerFileServiceMock.Object);
 
-            var sut = service.Import(It.IsAny<IFormFile>());
+            var result = sut.Import(It.IsAny<IFormFile>());
 
-            Assert.True(sut.Success == false);
-            Assert.True(sut.Error != null);
-            Assert.True(sut.TransactionsImportedQuantity == 0);
+            Assert.True(result.Success == false);
+            Assert.True(result.Error != null);
+            Assert.True(result.TransactionsImportedQuantity == 0);
         }
     }
 }

@@ -8,12 +8,12 @@ using System.Text;
 
 namespace ConciliateBankStatement.Core
 {
-    public class TransactionImporterService : ITransactionImporterService
+    public class TransactionService : ITransactionService
     {
         private readonly ITransactionRepository _transactionRepository;
         private readonly IFileImporterService _importerFileService;
 
-        public TransactionImporterService(
+        public TransactionService(
             ITransactionRepository transactionRepository,
             IFileImporterService importerFileService)
         {
@@ -47,6 +47,17 @@ namespace ConciliateBankStatement.Core
             {
                 return new ImportResponse("Falha inesperada, tente novamente mais tarde.");
             }
+        }
+
+        public IList<Transaction> GetTransactions(DateTime startAt, DateTime endAt)
+        {
+            if(startAt == default(DateTime))
+                startAt = DateTime.Now.AddMonths(-1);
+
+            if (endAt == default(DateTime))
+                endAt = DateTime.Now;
+            
+            return _transactionRepository.GetTransactionsByPeriod(startAt, endAt);
         }
     }
 }

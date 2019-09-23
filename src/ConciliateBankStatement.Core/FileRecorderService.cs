@@ -12,7 +12,7 @@ namespace ConciliateBankStatement.Core
         public string Recorder(IFormFile formFile)
         {
             var fileName = Path.GetFileName(formFile.FileName);
-            var filePath = Path.Combine("C:\\Projetos\\nibo_projeto\\ConciliateBankStatement\\src\\ConciliateBankStatement.Core\\uploads", fileName);
+            var filePath = Path.Combine(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\..\\ConciliateBankStatement.Core\\uploads"), fileName);
             using (var fileSteam = new FileStream(filePath, FileMode.Create))
             {
                 formFile.CopyTo(fileSteam);
