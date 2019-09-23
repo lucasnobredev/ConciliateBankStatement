@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConciliateBankStatement.Cor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConciliateBankStatement.Presentation", "ConciliateBankStatement.Presentation\ConciliateBankStatement.Presentation.csproj", "{881D4282-8487-4947-9473-4EE94D60DBBD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConciliateBankStatement.Repository", "ConciliateBankStatement.Repository\ConciliateBankStatement.Repository.csproj", "{A968FCBF-9979-442C-9136-7C1EFFD683A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{881D4282-8487-4947-9473-4EE94D60DBBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{881D4282-8487-4947-9473-4EE94D60DBBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{881D4282-8487-4947-9473-4EE94D60DBBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A968FCBF-9979-442C-9136-7C1EFFD683A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A968FCBF-9979-442C-9136-7C1EFFD683A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A968FCBF-9979-442C-9136-7C1EFFD683A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A968FCBF-9979-442C-9136-7C1EFFD683A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

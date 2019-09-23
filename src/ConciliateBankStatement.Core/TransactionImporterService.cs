@@ -8,7 +8,7 @@ using System.Text;
 
 namespace ConciliateBankStatement.Core
 {
-    public class TransactionImporterService
+    public class TransactionImporterService : ITransactionImporterService
     {
         private readonly ITransactionRepository _transactionRepository;
         private readonly IFileImporterService _importerFileService;
@@ -43,7 +43,7 @@ namespace ConciliateBankStatement.Core
 
                 return new ImportResponse(transactionsImportedQuantity);
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 return new ImportResponse("Falha inesperada, tente novamente mais tarde.");
             }

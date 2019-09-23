@@ -4,6 +4,7 @@ namespace ConciliateBankStatement.Core
 {
     public class Transaction
     {
+        public int Id { get; private set; }
         public string Type { get; private set; }
         public DateTime DatePosted { get; private set; }
         public decimal Amount { get; private set; }

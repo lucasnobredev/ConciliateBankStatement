@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ConciliateBankStatement.Core;
+using ConciliateBankStatement.Core.Interfaces;
+using ConciliateBankStatement.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -31,6 +35,13 @@ namespace ConciliateBankStatement.Presentation
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddDbContext<StatementContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<ITransactionRepository, TransactionRepository>();
+            services.AddSingleton<IFileImporterService, FileImporterService>();
+            services.AddSingleton<IFileRecorderService, FileRecorderService>();
+            services.AddScoped<ITransactionImporterService, TransactionImporterService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -57,7 +68,7 @@ namespace ConciliateBankStatement.Presentation
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=FileImporter}/{action=Index}/{id?}");
             });
         }
     }

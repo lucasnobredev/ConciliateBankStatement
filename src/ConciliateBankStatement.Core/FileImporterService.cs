@@ -90,17 +90,5 @@ namespace ConciliateBankStatement.Core
         {
             return new DateTime(int.Parse(tag.Substring(0, 4)), int.Parse(tag.Substring(4, 2)), int.Parse(tag.Substring(6, 2)));
         }
-
-        private string SaveFile(IFormFile file)
-        {
-            var fileName = Path.GetFileName(file.FileName);
-            var filePath = Path.Combine("C:\\Projetos\\nibo\\ConciliateBankStatement\\ConciliateBankStatement", "teste.ofx");
-            using (var fileSteam = new FileStream(filePath, FileMode.Create))
-            {
-                file.CopyTo(fileSteam);
-            }
-
-            return filePath;
-        }
     }
 }

@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ConciliateBankStatement.Core\ConciliateBankStatement.Core.csproj" />
+    <ProjectReference Include="..\ConciliateBankStatement.Repository\ConciliateBankStatement.Repository.csproj" />
   </ItemGroup>
 
 </Project>
