@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.757
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConciliateBankStatement.Core", "ConciliateBankStatement.Core\ConciliateBankStatement.Core.csproj", "{1CE7ADC3-2C2D-4C0E-B721-4203B082D3C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConciliateBankStatement.Core", "ConciliateBankStatement.Core\ConciliateBankStatement.Core.csproj", "{1CE7ADC3-2C2D-4C0E-B721-4203B082D3C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConciliateBankStatement.Core.UnitTests", "ConciliateBankStatement.Core.UnitTests\ConciliateBankStatement.Core.UnitTests.csproj", "{5A1D3913-B90E-4244-A254-19FECA29CE8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConciliateBankStatement.Core.UnitTests", "ConciliateBankStatement.Core.UnitTests\ConciliateBankStatement.Core.UnitTests.csproj", "{5A1D3913-B90E-4244-A254-19FECA29CE8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConciliateBankStatement.Presentation", "ConciliateBankStatement.Presentation\ConciliateBankStatement.Presentation.csproj", "{881D4282-8487-4947-9473-4EE94D60DBBD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{5A1D3913-B90E-4244-A254-19FECA29CE8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A1D3913-B90E-4244-A254-19FECA29CE8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A1D3913-B90E-4244-A254-19FECA29CE8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{881D4282-8487-4947-9473-4EE94D60DBBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{881D4282-8487-4947-9473-4EE94D60DBBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{881D4282-8487-4947-9473-4EE94D60DBBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{881D4282-8487-4947-9473-4EE94D60DBBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

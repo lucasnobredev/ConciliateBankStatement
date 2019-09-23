@@ -1,5 +1,7 @@
 ﻿using ConciliateBankStatement.Core.Interfaces;
 using ConciliateBankStatement.Core.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Internal;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,10 +12,18 @@ namespace ConciliateBankStatement.Core
 {
     public class FileImporterService : IFileImporterService
     {
-        public ImportedFileModel Import(string filePath)
+        private readonly IFileRecorderService _fileRecorderService;
+        public FileImporterService(
+            IFileRecorderService fileRecorderService)
+        {
+            _fileRecorderService = fileRecorderService;
+        }
+       
+        public ImportedFileModel Import(IFormFile formFile)
         {
             try
             {
+                string filePath = _fileRecorderService.Recorder(formFile);
                 string line = null;
                 using (StreamReader sr = new StreamReader(filePath))
                 {
@@ -79,6 +89,18 @@ namespace ConciliateBankStatement.Core
         private DateTime GetDateFromTag(string tag)
         {
             return new DateTime(int.Parse(tag.Substring(0, 4)), int.Parse(tag.Substring(4, 2)), int.Parse(tag.Substring(6, 2)));
+        }
+
+        private string SaveFile(IFormFile file)
+        {
+            var fileName = Path.GetFileName(file.FileName);
+            var filePath = Path.Combine("C:\\Projetos\\nibo\\ConciliateBankStatement\\ConciliateBankStatement", "teste.ofx");
+            using (var fileSteam = new FileStream(filePath, FileMode.Create))
+            {
+                file.CopyTo(fileSteam);
+            }
+
+            return filePath;
         }
     }
 }

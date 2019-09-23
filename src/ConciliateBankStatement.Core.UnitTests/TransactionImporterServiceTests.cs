@@ -1,5 +1,6 @@
 ﻿using ConciliateBankStatement.Core.Interfaces;
 using ConciliateBankStatement.Core.Models;
+using Microsoft.AspNetCore.Http;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using Xunit;
 namespace ConciliateBankStatement.Core.UnitTests
 {
     [Trait("Importer", "Transaction")]
-    public class ImporterTransactionServiceTests
+    public class TransactionImporterServiceTests
     {
         [Fact(DisplayName = "Should Import Transaction When There Is Not No One Persisted")]
         public void ShouldImportTransactionWhenThereIsNotNoOnePersisted()
@@ -33,13 +34,12 @@ namespace ConciliateBankStatement.Core.UnitTests
                     }
                 }
             };
-            //{ new Transaction("CREDIT", DateTime.Now.AddDays(-3).Date, 100, "teste") }
-
-            importerFileServiceMock.Setup(x => x.Import(It.IsAny<string>())).Returns(importedFileModel);
+            
+            importerFileServiceMock.Setup(x => x.Import(It.IsAny<IFormFile>())).Returns(importedFileModel);
 
             var service = new TransactionImporterService(transactionRepositoryMock.Object, importerFileServiceMock.Object);
 
-            var sut = service.Import(filePath);
+            var sut = service.Import(It.IsAny<IFormFile>());
 
             Assert.True(sut.Success);
             Assert.True(sut.Error == null);
@@ -68,11 +68,11 @@ namespace ConciliateBankStatement.Core.UnitTests
                 }
             };
 
-            importerFileServiceMock.Setup(x => x.Import(It.IsAny<string>())).Returns(importedFileModel);
+            importerFileServiceMock.Setup(x => x.Import(It.IsAny<IFormFile>())).Returns(importedFileModel);
 
             var service = new TransactionImporterService(transactionRepositoryMock.Object, importerFileServiceMock.Object);
 
-            var sut = service.Import(filePath);
+            var sut = service.Import(It.IsAny<IFormFile>());
 
             Assert.True(sut.Success);
             Assert.True(sut.Error == null);
@@ -101,11 +101,11 @@ namespace ConciliateBankStatement.Core.UnitTests
                 }
             };
 
-            importerFileServiceMock.Setup(x => x.Import(It.IsAny<string>())).Returns(importedFileModel);
+            importerFileServiceMock.Setup(x => x.Import(It.IsAny<IFormFile>())).Returns(importedFileModel);
 
             var service = new TransactionImporterService(transactionRepositoryMock.Object, importerFileServiceMock.Object);
 
-            var sut = service.Import(filePath);
+            var sut = service.Import(It.IsAny<IFormFile>());
 
             Assert.True(sut.Success);
             Assert.True(sut.Error == null);
@@ -134,11 +134,11 @@ namespace ConciliateBankStatement.Core.UnitTests
                 }
             };
 
-            importerFileServiceMock.Setup(x => x.Import(It.IsAny<string>())).Returns(importedFileModel);
+            importerFileServiceMock.Setup(x => x.Import(It.IsAny<IFormFile>())).Returns(importedFileModel);
 
             var service = new TransactionImporterService(transactionRepositoryMock.Object, importerFileServiceMock.Object);
 
-            var sut = service.Import(filePath);
+            var sut = service.Import(It.IsAny<IFormFile>());
 
             Assert.True(sut.Success == false);
             Assert.True(sut.Error != null);

@@ -1,5 +1,6 @@
 ﻿using ConciliateBankStatement.Core.Interfaces;
 using ConciliateBankStatement.Core.Models;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +21,11 @@ namespace ConciliateBankStatement.Core
             _importerFileService = importerFileService;
         }
 
-        public ImportResponse Import(string filePath)
+        public ImportResponse Import(IFormFile formFile)
         {
             try
             {
-                var importedFile = _importerFileService.Import(filePath);
+                var importedFile = _importerFileService.Import(formFile);
                 var transactions = _transactionRepository.GetTransactionsByPeriod(importedFile.DateStart, importedFile.DateEnd);
                 int transactionsImportedQuantity = 0;
 
