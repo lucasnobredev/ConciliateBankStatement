@@ -43,7 +43,7 @@ namespace ConciliateBankStatement.Core
 
                 return new ImportResponse(transactionsImportedQuantity);
             }
-            catch(Exception)
+            catch(Exception ex)
             {
                 return new ImportResponse("Falha inesperada, tente novamente mais tarde.");
             }
