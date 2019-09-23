@@ -7,16 +7,17 @@ using Xunit;
 
 namespace ConciliateBankStatement.Core.UnitTests
 {
-    public class TransactionTests
+    [Trait("Importer", "File")]
+    public class ImporterFileServiceTests
     {
-        [Fact]
-        public void Test1()
+        [Fact(DisplayName = "Should Import A File With 31 Transactions")]
+        public void ShouldImportAFileWith31Transactions()
         {
-            var fileReaderService = new ImporterFileService();
+            var importerFileService = new ImporterFileService();
 
             var filePath = Path.Combine("C:\\Projetos\\nibo_projeto\\ConciliateBankStatement\\src\\ConciliateBankStatement.Core.UnitTests", "teste.ofx");
             var qteTransactionsInFile = 31;
-            var sut = fileReaderService.Import(filePath);
+            var sut = importerFileService.Import(filePath);
 
             Assert.True(sut != null);
             Assert.True(sut.Transactions.Count == qteTransactionsInFile);

@@ -7,5 +7,6 @@ namespace ConciliateBankStatement.Core.Interfaces
     public interface ITransactionRepository
     {
         IList<Transaction> GetTransactionsByPeriod(DateTime startAt, DateTime endAt);
+        void Save(Transaction transaction);
     }
 }
